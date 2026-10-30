@@ -1,5 +1,6 @@
 .gitignore
 .hermes/freezes/invoice-v2.json
+JUDGES_START_HERE.md
 PUBLICATION_INVENTORY.txt
 PUBLICATION_MANIFEST.json
 README.md
@@ -26,6 +27,7 @@ provenance/BASELINE_STAGING_SHA256.json
 public-demo/app.py
 public-demo/diagnostic-replay.json
 tools/finalize_staging.py
+tools/judge_check.py
 tools/validate_staging.py
 validation/checks.json
 validation/cli.txt

@@ -1,5 +1,7 @@
 # FlowOps — Autonomous Merchant Invoice Operations
 
+**Judges:** [Quickstart, reproducibility paths and evaluation boundaries](JUDGES_START_HERE.md).
+
 FlowOps is an AI-agent prototype I built to investigate merchant invoice discrepancies, execute authorized corrections and verify the persisted result before closing a case. It runs on **synthetic data**, with no connection to real POS, payment or merchant systems.
 
 ## How it works
