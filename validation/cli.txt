@@ -1,0 +1,31 @@
+split_bill               status=CLOSED_VERIFIED    verified=True steps=3 deploys=1
+  01 initial_verification: Initial read-only verification completed
+  02 stage_split_fix: Integration worker staged correction; persisted state unchanged
+  03 deploy: Worker claims FIXED; state updated
+  04 close: Closed only after independent verification and authorization
+wrong_total_and_split    status=CLOSED_VERIFIED    verified=True steps=5 deploys=2
+  01 initial_verification: Initial read-only verification completed
+  02 stage_invoice_fix: Integration worker staged correction; persisted state unchanged
+  03 deploy: Worker claims FIXED; state updated
+  04 stage_split_fix: Integration worker staged correction; persisted state unchanged
+  05 deploy: Worker claims FIXED; state updated
+  06 close: Closed only after independent verification and authorization
+security_approval        status=PAUSED_APPROVAL    verified=False steps=0 deploys=0
+  01 policy_gate: Human approval required
+fake_fix                 status=ESCALATED          verified=False steps=5 deploys=2
+  01 initial_verification: Initial read-only verification completed
+  02 stage_split_fix: Integration worker staged correction; persisted state unchanged
+  03 deploy: Worker claims FIXED (injected no-op); state unchanged
+  04 stage_split_fix: Integration worker staged correction; persisted state unchanged
+  05 deploy: Worker claims FIXED (injected no-op); state unchanged
+  06 escalate: Escalated: no safe, verified resolution available
+outage                   status=ESCALATED          verified=False steps=1 deploys=0
+  01 initial_verification: Initial read-only verification completed
+  02 escalate: Escalated: no safe, verified resolution available
+rounding                 status=CLOSED_VERIFIED    verified=True steps=5 deploys=2
+  01 initial_verification: Initial read-only verification completed
+  02 stage_invoice_fix: Integration worker staged correction; persisted state unchanged
+  03 deploy: Worker claims FIXED; state updated
+  04 stage_split_fix: Integration worker staged correction; persisted state unchanged
+  05 deploy: Worker claims FIXED; state updated
+  06 close: Closed only after independent verification and authorization

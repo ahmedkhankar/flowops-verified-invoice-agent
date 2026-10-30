@@ -1,0 +1,26 @@
+{
+  "network": "Python audit hook blocks outbound connection/DNS/sendto in each fresh worker",
+  "installation": "None; existing project venv used externally, not copied",
+  "checks": [
+    {
+      "check": "pytest",
+      "exit_code": 0,
+      "log": "validation/pytest.txt"
+    },
+    {
+      "check": "cli",
+      "exit_code": 0,
+      "log": "validation/cli.txt"
+    },
+    {
+      "check": "native",
+      "exit_code": 0,
+      "log": "validation/native.txt"
+    },
+    {
+      "check": "ui",
+      "exit_code": 0,
+      "log": "validation/ui.txt"
+    }
+  ]
+}

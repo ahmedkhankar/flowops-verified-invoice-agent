@@ -1,0 +1,40 @@
+[
+  {
+    "case_id": "split_bill", "title": "Split bill overcharges one customer",
+    "request": "A merchant reports that a two-way split on an 11.00 SAR invoice charges one customer 6.00 and the other 5.00. Restore an even split.",
+    "risk": "low", "reason": "Synthetic low-risk demo",
+    "initial_bill": {"item_cents": [500, 500], "tax_bps": 1000, "stored_total_cents": 1100, "split_cents": [600, 500], "service_ready": true}
+  },
+  {
+    "case_id": "wrong_total_and_split", "title": "Invoice total and split both incorrect",
+    "request": "A QR checkout's displayed total does not match its item prices plus tax, and the two-way split is inconsistent. Repair both simulated values.",
+    "risk": "low", "reason": "Synthetic low-risk demo",
+    "initial_bill": {"item_cents": [999, 501], "tax_bps": 1000, "stored_total_cents": 1600, "split_cents": [800, 800], "service_ready": true}
+  },
+  {
+    "case_id": "security_approval", "title": "Sensitive merchant configuration",
+    "request": "Merchant configuration is faulty but has been flagged for security review. No changes are allowed before approval.",
+    "risk": "high", "reason": "Security-sensitive change",
+    "policy_flags": ["security_review"],
+    "initial_bill": {"item_cents": [500, 500], "tax_bps": 1000, "stored_total_cents": 1100, "split_cents": [600, 500], "service_ready": true}
+  },
+  {
+    "case_id": "fake_fix", "title": "Team claims success but changes nothing",
+    "request": "The integration worker claims the split has been repaired, but its deployment service fails to modify the stored bill. Identify the false completion.",
+    "risk": "low", "reason": "Fault-injection demonstration",
+    "simulated_noop_deploy": true,
+    "initial_bill": {"item_cents": [500, 500], "tax_bps": 1000, "stored_total_cents": 1100, "split_cents": [600, 500], "service_ready": true}
+  },
+  {
+    "case_id": "outage", "title": "Payment service entirely unavailable",
+    "request": "The payment service is offline, and no safe restart tool is available in this prototype. Escalate rather than declare success.",
+    "risk": "low", "reason": "Unsupported recovery action",
+    "initial_bill": {"item_cents": [500, 500], "tax_bps": 1000, "stored_total_cents": 1100, "split_cents": [550, 550], "service_ready": false}
+  },
+  {
+    "case_id": "rounding", "title": "Half-up VAT and odd-cent split",
+    "request": "Resolve a rounding discrepancy for two items of 9.99 SAR and 5.01 SAR with a 15% VAT charge.",
+    "risk": "low", "reason": "Rounding edge case",
+    "initial_bill": {"item_cents": [999, 501], "tax_bps": 1500, "stored_total_cents": 1700, "split_cents": [850, 850], "service_ready": true}
+  }
+]

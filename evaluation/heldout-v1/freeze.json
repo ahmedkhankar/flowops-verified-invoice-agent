@@ -1,0 +1,16 @@
+{
+  "version": "heldout-v1",
+  "frozen_utc": "2026-10-30T13:53:24.514659+00:00",
+  "files": {
+    "run.py": "09644c83bdf4ee82a62ae0ad43f85f545646c6bbad109982d354ee9368b55a56",
+    "README.md": "558a42e90122a375c212321763befaad8412d5be2efbd666bc64e009ff0449ea",
+    "tests/test_wrapper.py": "47213b9393f6caab4c3da9420924762a9f1e1b139b59b3c0632e2a6d2bc419b2",
+    "tests/test_contracts.py": "dd90e19c9ff9885aa325cccbf2ba6345a8df46bcbcf61a88d0e6f0b8ea3368f3",
+    "validation.json": "c78b759f2505e92ce67ebdc2ccf065b7977a525d1bd60282d8ca01bcb06c403d"
+  },
+  "native_freeze_sha256": "e2d675b5e39306935c0e9f1a51946d947ce1f2c563dbeaaf4ed553693276a0b5",
+  "protected_manifest_sha256": "9bfd7f28afc73f128bd22563eb6125791701ffcfae8417f64b1f21466c3ca761",
+  "heldout_input_seen": false,
+  "live_inference_performed": false,
+  "policy": "Immutable wrapper protocol frozen before receipt of unseen cases; preserve original native freeze and first attempt including partial failures. No retry, tuning or automatic resume."
+}

@@ -1,0 +1,29 @@
+{
+  "status": "PASS, heuristic/manual review, not security certification",
+  "scope": "Local candidate only; no publication authorised",
+  "findings": [
+    {
+      "file": "versions/invoice-v2/tests/test_regressions.py",
+      "category": "email",
+      "line": 327,
+      "review": "Reserved example.test synthetic endpoint-rejection fixture, not real PII or credential"
+    }
+  ],
+  "excluded_asset_check": [],
+  "selected_evidence_disclosure": [
+    "three selected cases",
+    "synthetic invoice values",
+    "model rationales",
+    "expected-outcome labels",
+    "source identities/hashes"
+  ],
+  "full_private_trace_included": false,
+  "licence_added": false,
+  "test_statement": "75 reproducible public subset, historical 126 full native suite; no rerun in this packaging action",
+  "limitations": [
+    "Selected HTML cannot substantiate entire held-out score",
+    "Private fixture omissions prevent full historical-suite/UI integrity reproduction",
+    "Original reference manifests do not replace final candidate inventory",
+    "Dependencies are ranges, not a lockfile"
+  ]
+}

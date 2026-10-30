@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scanned_files": 54,
+  "findings": [],
+  "original_allowlist_source_hashes": "UNCHANGED",
+  "raw_private_inputs_opened": false,
+  "full_historical_integrity_claimed": false,
+  "limitations": "Heuristic value-pattern scan, not formal secret detection; source verification covers only explicit inspected allowlist, not excluded private evidence"
+}

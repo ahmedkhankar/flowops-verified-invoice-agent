@@ -1,0 +1,277 @@
+..................FFFF.................................................. [ 91%]
+.......                                                                  [100%]
+=================================== FAILURES ===================================
+______ test_full_harness_counters_trace_and_baseline_preservation[False] _______
+
+tmp_path = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/validation/tmp/pytest-of-local-userlocal-user/pytest-0/test_full_harness_counters_tra0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11762ac60>
+repeat = False
+
+    @pytest.mark.parametrize('repeat', [False, True])
+    def test_full_harness_counters_trace_and_baseline_preservation(tmp_path, monkeypatch, repeat):
+>       frozen = fixture_project(tmp_path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_evaluation_harness.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_evaluation_harness.py:23: in fixture_project
+    shutil.copytree(source, tmp_path / directory)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/runs/ollama-live-20261030T055320Z')
+dst = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/validation/tmp/pytest-of-local-userlocal-user/pytest-0/test_full_harness_counters_tra0/runs/ollama-live-20261030T055320Z')
+symlinks = False, ignore = None, copy_function = <function copy2 at 0x101388ea0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def copytree(src, dst, symlinks=False, ignore=None, copy_function=copy2,
+                 ignore_dangling_symlinks=False, dirs_exist_ok=False):
+        """Recursively copy a directory tree and return the destination directory.
+    
+        If exception(s) occur, an Error is raised with a list of reasons.
+    
+        If the optional symlinks flag is true, symbolic links in the
+        source tree result in symbolic links in the destination tree; if
+        it is false, the contents of the files pointed to by symbolic
+        links are copied. If the file pointed to by the symlink doesn't
+        exist, an exception will be added in the list of errors raised in
+        an Error exception at the end of the copy process.
+    
+        You can set the optional ignore_dangling_symlinks flag to true if you
+        want to silence this exception. Notice that this has no effect on
+        platforms that don't support os.symlink.
+    
+        The optional ignore argument is a callable. If given, it
+        is called with the `src` parameter, which is the directory
+        being visited by copytree(), and `names` which is the list of
+        `src` contents, as returned by os.listdir():
+    
+            callable(src, names) -> ignored_names
+    
+        Since copytree() is called recursively, the callable will be
+        called once for each directory that is copied. It returns a
+        list of names relative to the `src` directory that should
+        not be copied.
+    
+        The optional copy_function argument is a callable that will be used
+        to copy each file. It will be called with the source path and the
+        destination path as arguments. By default, copy2() is used, but any
+        function that supports the same signature (like copy()) can be used.
+    
+        If dirs_exist_ok is false (the default) and `dst` already exists, a
+        `FileExistsError` is raised. If `dirs_exist_ok` is true, the copying
+        operation will continue if it encounters existing directories, and files
+        within the `dst` tree will be overwritten by corresponding files from the
+        `src` tree.
+        """
+        sys.audit("shutil.copytree", src, dst)
+>       with os.scandir(src) as itr:
+             ^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/runs/ollama-live-20261030T055320Z'
+
+/opt/anaconda3/lib/python3.12/shutil.py:598: FileNotFoundError
+_______ test_full_harness_counters_trace_and_baseline_preservation[True] _______
+
+tmp_path = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/validation/tmp/pytest-of-local-userlocal-user/pytest-0/test_full_harness_counters_tra1')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x11757c500>
+repeat = True
+
+    @pytest.mark.parametrize('repeat', [False, True])
+    def test_full_harness_counters_trace_and_baseline_preservation(tmp_path, monkeypatch, repeat):
+>       frozen = fixture_project(tmp_path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_evaluation_harness.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_evaluation_harness.py:23: in fixture_project
+    shutil.copytree(source, tmp_path / directory)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/runs/ollama-live-20261030T055320Z')
+dst = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/validation/tmp/pytest-of-local-userlocal-user/pytest-0/test_full_harness_counters_tra1/runs/ollama-live-20261030T055320Z')
+symlinks = False, ignore = None, copy_function = <function copy2 at 0x101388ea0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def copytree(src, dst, symlinks=False, ignore=None, copy_function=copy2,
+                 ignore_dangling_symlinks=False, dirs_exist_ok=False):
+        """Recursively copy a directory tree and return the destination directory.
+    
+        If exception(s) occur, an Error is raised with a list of reasons.
+    
+        If the optional symlinks flag is true, symbolic links in the
+        source tree result in symbolic links in the destination tree; if
+        it is false, the contents of the files pointed to by symbolic
+        links are copied. If the file pointed to by the symlink doesn't
+        exist, an exception will be added in the list of errors raised in
+        an Error exception at the end of the copy process.
+    
+        You can set the optional ignore_dangling_symlinks flag to true if you
+        want to silence this exception. Notice that this has no effect on
+        platforms that don't support os.symlink.
+    
+        The optional ignore argument is a callable. If given, it
+        is called with the `src` parameter, which is the directory
+        being visited by copytree(), and `names` which is the list of
+        `src` contents, as returned by os.listdir():
+    
+            callable(src, names) -> ignored_names
+    
+        Since copytree() is called recursively, the callable will be
+        called once for each directory that is copied. It returns a
+        list of names relative to the `src` directory that should
+        not be copied.
+    
+        The optional copy_function argument is a callable that will be used
+        to copy each file. It will be called with the source path and the
+        destination path as arguments. By default, copy2() is used, but any
+        function that supports the same signature (like copy()) can be used.
+    
+        If dirs_exist_ok is false (the default) and `dst` already exists, a
+        `FileExistsError` is raised. If `dirs_exist_ok` is true, the copying
+        operation will continue if it encounters existing directories, and files
+        within the `dst` tree will be overwritten by corresponding files from the
+        `src` tree.
+        """
+        sys.audit("shutil.copytree", src, dst)
+>       with os.scandir(src) as itr:
+             ^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/runs/ollama-live-20261030T055320Z'
+
+/opt/anaconda3/lib/python3.12/shutil.py:598: FileNotFoundError
+___________ test_freeze_guard_blocks_changed_code_before_any_network ___________
+
+tmp_path = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/validation/tmp/pytest-of-local-userlocal-user/pytest-0/test_freeze_guard_blocks_chang0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x102eb68a0>
+
+    def test_freeze_guard_blocks_changed_code_before_any_network(tmp_path, monkeypatch):
+>       frozen = fixture_project(tmp_path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_evaluation_harness.py:102: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_evaluation_harness.py:23: in fixture_project
+    shutil.copytree(source, tmp_path / directory)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/runs/ollama-live-20261030T055320Z')
+dst = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/validation/tmp/pytest-of-local-userlocal-user/pytest-0/test_freeze_guard_blocks_chang0/runs/ollama-live-20261030T055320Z')
+symlinks = False, ignore = None, copy_function = <function copy2 at 0x101388ea0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def copytree(src, dst, symlinks=False, ignore=None, copy_function=copy2,
+                 ignore_dangling_symlinks=False, dirs_exist_ok=False):
+        """Recursively copy a directory tree and return the destination directory.
+    
+        If exception(s) occur, an Error is raised with a list of reasons.
+    
+        If the optional symlinks flag is true, symbolic links in the
+        source tree result in symbolic links in the destination tree; if
+        it is false, the contents of the files pointed to by symbolic
+        links are copied. If the file pointed to by the symlink doesn't
+        exist, an exception will be added in the list of errors raised in
+        an Error exception at the end of the copy process.
+    
+        You can set the optional ignore_dangling_symlinks flag to true if you
+        want to silence this exception. Notice that this has no effect on
+        platforms that don't support os.symlink.
+    
+        The optional ignore argument is a callable. If given, it
+        is called with the `src` parameter, which is the directory
+        being visited by copytree(), and `names` which is the list of
+        `src` contents, as returned by os.listdir():
+    
+            callable(src, names) -> ignored_names
+    
+        Since copytree() is called recursively, the callable will be
+        called once for each directory that is copied. It returns a
+        list of names relative to the `src` directory that should
+        not be copied.
+    
+        The optional copy_function argument is a callable that will be used
+        to copy each file. It will be called with the source path and the
+        destination path as arguments. By default, copy2() is used, but any
+        function that supports the same signature (like copy()) can be used.
+    
+        If dirs_exist_ok is false (the default) and `dst` already exists, a
+        `FileExistsError` is raised. If `dirs_exist_ok` is true, the copying
+        operation will continue if it encounters existing directories, and files
+        within the `dst` tree will be overwritten by corresponding files from the
+        `src` tree.
+        """
+        sys.audit("shutil.copytree", src, dst)
+>       with os.scandir(src) as itr:
+             ^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/runs/ollama-live-20261030T055320Z'
+
+/opt/anaconda3/lib/python3.12/shutil.py:598: FileNotFoundError
+______________ test_original_cases_cannot_be_declared_independent ______________
+
+tmp_path = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/validation/tmp/pytest-of-local-userlocal-user/pytest-0/test_original_cases_cannot_be_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x102eb5af0>
+
+    def test_original_cases_cannot_be_declared_independent(tmp_path, monkeypatch):
+>       frozen = fixture_project(tmp_path)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_evaluation_harness.py:112: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_evaluation_harness.py:23: in fixture_project
+    shutil.copytree(source, tmp_path / directory)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+src = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/runs/ollama-live-20261030T055320Z')
+dst = PosixPath('<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/validation/tmp/pytest-of-local-userlocal-user/pytest-0/test_original_cases_cannot_be_0/runs/ollama-live-20261030T055320Z')
+symlinks = False, ignore = None, copy_function = <function copy2 at 0x101388ea0>
+ignore_dangling_symlinks = False, dirs_exist_ok = False
+
+    def copytree(src, dst, symlinks=False, ignore=None, copy_function=copy2,
+                 ignore_dangling_symlinks=False, dirs_exist_ok=False):
+        """Recursively copy a directory tree and return the destination directory.
+    
+        If exception(s) occur, an Error is raised with a list of reasons.
+    
+        If the optional symlinks flag is true, symbolic links in the
+        source tree result in symbolic links in the destination tree; if
+        it is false, the contents of the files pointed to by symbolic
+        links are copied. If the file pointed to by the symlink doesn't
+        exist, an exception will be added in the list of errors raised in
+        an Error exception at the end of the copy process.
+    
+        You can set the optional ignore_dangling_symlinks flag to true if you
+        want to silence this exception. Notice that this has no effect on
+        platforms that don't support os.symlink.
+    
+        The optional ignore argument is a callable. If given, it
+        is called with the `src` parameter, which is the directory
+        being visited by copytree(), and `names` which is the list of
+        `src` contents, as returned by os.listdir():
+    
+            callable(src, names) -> ignored_names
+    
+        Since copytree() is called recursively, the callable will be
+        called once for each directory that is copied. It returns a
+        list of names relative to the `src` directory that should
+        not be copied.
+    
+        The optional copy_function argument is a callable that will be used
+        to copy each file. It will be called with the source path and the
+        destination path as arguments. By default, copy2() is used, but any
+        function that supports the same signature (like copy()) can be used.
+    
+        If dirs_exist_ok is false (the default) and `dst` already exists, a
+        `FileExistsError` is raised. If `dirs_exist_ok` is true, the copying
+        operation will continue if it encounters existing directories, and files
+        within the `dst` tree will be overwritten by corresponding files from the
+        `src` tree.
+        """
+        sys.audit("shutil.copytree", src, dst)
+>       with os.scandir(src) as itr:
+             ^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '<SOURCE_ROOT>/submission/heldout-release-v1/github-staging/runs/ollama-live-20261030T055320Z'
+
+/opt/anaconda3/lib/python3.12/shutil.py:598: FileNotFoundError
+=========================== short test summary info ============================
+FAILED tests/test_evaluation_harness.py::test_full_harness_counters_trace_and_baseline_preservation[False]
+FAILED tests/test_evaluation_harness.py::test_full_harness_counters_trace_and_baseline_preservation[True]
+FAILED tests/test_evaluation_harness.py::test_freeze_guard_blocks_changed_code_before_any_network
+FAILED tests/test_evaluation_harness.py::test_original_cases_cannot_be_declared_independent
+4 failed, 75 passed in 1.42s

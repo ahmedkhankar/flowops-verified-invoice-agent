@@ -1,0 +1,279 @@
+{
+  "scope": "Explicit inspected application/UI/wrapper source only; no case-input or raw run tree copying",
+  "entries": [
+    {
+      "source": "versions/invoice-v2/flowops/__init__.py",
+      "path": "versions/invoice-v2/flowops/__init__.py",
+      "source_sha256": "042ee68341384b810d485d88be9ef13becf31743b481bb335eaf4e900ee33cce",
+      "staged_sha256": "042ee68341384b810d485d88be9ef13becf31743b481bb335eaf4e900ee33cce",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/flowops/cases.py",
+      "path": "versions/invoice-v2/flowops/cases.py",
+      "source_sha256": "ba09f5d5e83ed8bd684bd36752bf279e0e58b4f8b28958687d9741320956aba5",
+      "staged_sha256": "ba09f5d5e83ed8bd684bd36752bf279e0e58b4f8b28958687d9741320956aba5",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/flowops/cli.py",
+      "path": "versions/invoice-v2/flowops/cli.py",
+      "source_sha256": "adca458f2a1d841323e69620e92799ed119bb82258549720cdbbf84b13c99578",
+      "staged_sha256": "adca458f2a1d841323e69620e92799ed119bb82258549720cdbbf84b13c99578",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/flowops/engine.py",
+      "path": "versions/invoice-v2/flowops/engine.py",
+      "source_sha256": "e5a39a99d4aee1523a6c8c48e4ea22d94bc7e77674bb9642a46d0020dad7c7a7",
+      "staged_sha256": "e5a39a99d4aee1523a6c8c48e4ea22d94bc7e77674bb9642a46d0020dad7c7a7",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/flowops/evaluation.py",
+      "path": "versions/invoice-v2/flowops/evaluation.py",
+      "source_sha256": "9defcf8fe35ae9eb16bac46ea956d3720590875b8cc01cd00f56a3fc8e69d0bd",
+      "staged_sha256": "9defcf8fe35ae9eb16bac46ea956d3720590875b8cc01cd00f56a3fc8e69d0bd",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/flowops/fixer.py",
+      "path": "versions/invoice-v2/flowops/fixer.py",
+      "source_sha256": "57803f659918792be5da176150f97fd80236e389bd3ffa013c5d9cdc13d80b8e",
+      "staged_sha256": "57803f659918792be5da176150f97fd80236e389bd3ffa013c5d9cdc13d80b8e",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/flowops/invoices.py",
+      "path": "versions/invoice-v2/flowops/invoices.py",
+      "source_sha256": "e5da309fc15eda6b51a5d12cae5f45f32dcef6cc0c9f4cd2d0d356400fcac944",
+      "staged_sha256": "e5da309fc15eda6b51a5d12cae5f45f32dcef6cc0c9f4cd2d0d356400fcac944",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/flowops/models.py",
+      "path": "versions/invoice-v2/flowops/models.py",
+      "source_sha256": "8105f623128155f371149a9a3260e543e1970fe0eb4959437d63da7ccbf2e678",
+      "staged_sha256": "8105f623128155f371149a9a3260e543e1970fe0eb4959437d63da7ccbf2e678",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/flowops/planner.py",
+      "path": "versions/invoice-v2/flowops/planner.py",
+      "source_sha256": "0cbec2050ee6fd1ad7b31ecbd1d698f6fde4b78a59b688fbb6e9d620a7cbe9c9",
+      "staged_sha256": "0cbec2050ee6fd1ad7b31ecbd1d698f6fde4b78a59b688fbb6e9d620a7cbe9c9",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/flowops/tools.py",
+      "path": "versions/invoice-v2/flowops/tools.py",
+      "source_sha256": "cad4b94d74d4e8e7e7b0251cdbd90f904fe83d3f0b572cc180d518d7652f44c7",
+      "staged_sha256": "cad4b94d74d4e8e7e7b0251cdbd90f904fe83d3f0b572cc180d518d7652f44c7",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/flowops/verifier.py",
+      "path": "versions/invoice-v2/flowops/verifier.py",
+      "source_sha256": "a92e074061887e644fa58d44ab548703188800e92b6cb84f581cc57a941c763e",
+      "staged_sha256": "a92e074061887e644fa58d44ab548703188800e92b6cb84f581cc57a941c763e",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/tests/test_agent_feedback.py",
+      "path": "versions/invoice-v2/tests/test_agent_feedback.py",
+      "source_sha256": "61703936570850cee79175bd6e46c20f5044081598ac922f8f3205069dd4ee9c",
+      "staged_sha256": "61703936570850cee79175bd6e46c20f5044081598ac922f8f3205069dd4ee9c",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/tests/test_dashboard.py",
+      "path": "versions/invoice-v2/tests/test_dashboard.py",
+      "source_sha256": "a169a3027a2072c8daf4da8a8ef474a9092b3e0087ab14741e00f35e7337de9c",
+      "staged_sha256": "a169a3027a2072c8daf4da8a8ef474a9092b3e0087ab14741e00f35e7337de9c",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/tests/test_evaluation_harness.py",
+      "path": "versions/invoice-v2/tests/test_evaluation_harness.py",
+      "source_sha256": "cccc8b4c809255199e8a40cd718f64aeea4683987bf2dcfb98a4bcefbdb2d852",
+      "staged_sha256": "cccc8b4c809255199e8a40cd718f64aeea4683987bf2dcfb98a4bcefbdb2d852",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/tests/test_flowops.py",
+      "path": "versions/invoice-v2/tests/test_flowops.py",
+      "source_sha256": "b666e55ae3fff98748f38d38447532ac5bd4d851da632da0e0e9123f9d876233",
+      "staged_sha256": "b666e55ae3fff98748f38d38447532ac5bd4d851da632da0e0e9123f9d876233",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/tests/test_native_exam_runner.py",
+      "path": "versions/invoice-v2/tests/test_native_exam_runner.py",
+      "source_sha256": "bf371762a44ef8f657a82ec93a17dd9953688ee4c87e9ed259853fe141c483e4",
+      "staged_sha256": "bf371762a44ef8f657a82ec93a17dd9953688ee4c87e9ed259853fe141c483e4",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/tests/test_native_invoices.py",
+      "path": "versions/invoice-v2/tests/test_native_invoices.py",
+      "source_sha256": "6a1748463ffaa44d1a20a83a4f0a789b3e21430ee330b9612bbc4e0dbdc8dcbd",
+      "staged_sha256": "6a1748463ffaa44d1a20a83a4f0a789b3e21430ee330b9612bbc4e0dbdc8dcbd",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/tests/test_regressions.py",
+      "path": "versions/invoice-v2/tests/test_regressions.py",
+      "source_sha256": "e67b0ccf7ec5633e9b5cffdb1f2e469388835cdaade086f88ec59774e67a0717",
+      "staged_sha256": "e67b0ccf7ec5633e9b5cffdb1f2e469388835cdaade086f88ec59774e67a0717",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/scripts/evaluate_invoice_exam.py",
+      "path": "versions/invoice-v2/scripts/evaluate_invoice_exam.py",
+      "source_sha256": "516c6d30f3299689f10e8b39a8dc2ebbf032d517a7365dfe4939eaedec6683bc",
+      "staged_sha256": "516c6d30f3299689f10e8b39a8dc2ebbf032d517a7365dfe4939eaedec6683bc",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/scripts/evaluate_ollama_local.py",
+      "path": "versions/invoice-v2/scripts/evaluate_ollama_local.py",
+      "source_sha256": "8363ee18c6a99f0336f11fd96a37f2dd2b89f1d55cc4c1d55e42854b63a56c84",
+      "staged_sha256": "b248b9772a3d4f1ba4a2d36104651d29ef4faefc9dcca5a620c003af620cccae",
+      "transformations": [
+        "Replaced personal first name in provenance string with the project owner"
+      ]
+    },
+    {
+      "source": "versions/invoice-v2/app.py",
+      "path": "versions/invoice-v2/app.py",
+      "source_sha256": "afe3bfa1e1ecf4ea8366b44ca20378aedb2156e793f9de7886dc27795591e683",
+      "staged_sha256": "afe3bfa1e1ecf4ea8366b44ca20378aedb2156e793f9de7886dc27795591e683",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/requirements.txt",
+      "path": "versions/invoice-v2/requirements.txt",
+      "source_sha256": "81aebfa35323a998c6548f267609d8f24ed5308dc950635ba2c0f37de7bc4bc0",
+      "staged_sha256": "81aebfa35323a998c6548f267609d8f24ed5308dc950635ba2c0f37de7bc4bc0",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/cases/demo_cases.json",
+      "path": "versions/invoice-v2/cases/demo_cases.json",
+      "source_sha256": "d00ba46eb2c33ad24b1d8bda9537bb753eae265f3e920f69b2cd59e9b89e2940",
+      "staged_sha256": "d00ba46eb2c33ad24b1d8bda9537bb753eae265f3e920f69b2cd59e9b89e2940",
+      "transformations": []
+    },
+    {
+      "source": "versions/invoice-v2/README.md",
+      "path": "versions/invoice-v2/README.md",
+      "source_sha256": "36d8df2f3655e2a7562ee5cd7f0167461e57b58ece0663e41ba9c5f4022c5a30",
+      "staged_sha256": "40113ba2ab851c292c38563bd34b94aeec3e9cc74615ecde43b74508909644f9",
+      "transformations": [
+        "Replaced personal first name with the project owner"
+      ]
+    },
+    {
+      "source": "versions/invoice-v2/historical-integrity.json",
+      "path": "versions/invoice-v2/historical-integrity.json",
+      "source_sha256": "808184879affcc2ad4d80f547a798115fb8ee0a3a0e40e58eaed28966dfc2e06",
+      "staged_sha256": "808184879affcc2ad4d80f547a798115fb8ee0a3a0e40e58eaed28966dfc2e06",
+      "transformations": []
+    },
+    {
+      "source": "presentation/invoice-ui-v1/app.py",
+      "path": "presentation/invoice-ui-v1/app.py",
+      "source_sha256": "360fcda8090fe3d4c3893f2f785574835d075fdd8718c3a342ed613b00a697ae",
+      "staged_sha256": "360fcda8090fe3d4c3893f2f785574835d075fdd8718c3a342ed613b00a697ae",
+      "transformations": []
+    },
+    {
+      "source": "presentation/invoice-ui-v1/ui_core.py",
+      "path": "presentation/invoice-ui-v1/ui_core.py",
+      "source_sha256": "966dcb20d2bef41e2e6f92a558cd00d7a6331379b74271aae61b3fabf261c13a",
+      "staged_sha256": "966dcb20d2bef41e2e6f92a558cd00d7a6331379b74271aae61b3fabf261c13a",
+      "transformations": []
+    },
+    {
+      "source": "presentation/invoice-ui-v1/tests/test_presentation.py",
+      "path": "presentation/invoice-ui-v1/tests/test_presentation.py",
+      "source_sha256": "3dec9b2170fe7852cb1c7f326f7295f4a4e7262ee4d9c84a5fc7457f74393adc",
+      "staged_sha256": "3dec9b2170fe7852cb1c7f326f7295f4a4e7262ee4d9c84a5fc7457f74393adc",
+      "transformations": []
+    },
+    {
+      "source": "presentation/invoice-ui-v1/README.md",
+      "source_sha256": "2230171a4f5bfa9fdc046198f3149b971fb6f1c711f461c6b84eea1b695a662a",
+      "excluded": true,
+      "reason_categories": [
+        "personal_path",
+        "personal_identifier"
+      ]
+    },
+    {
+      "source": "presentation/invoice-ui-v1/protected-files.json",
+      "path": "presentation/invoice-ui-v1/protected-files.json",
+      "source_sha256": "9bfd7f28afc73f128bd22563eb6125791701ffcfae8417f64b1f21466c3ca761",
+      "staged_sha256": "9bfd7f28afc73f128bd22563eb6125791701ffcfae8417f64b1f21466c3ca761",
+      "transformations": []
+    },
+    {
+      "source": "presentation/invoice-ui-v1/release.json",
+      "path": "presentation/invoice-ui-v1/release.json",
+      "source_sha256": "3d82fb93f8ddb408eb386090fa5670dd1262c1218e77132fddae54c2e538391a",
+      "staged_sha256": "3d82fb93f8ddb408eb386090fa5670dd1262c1218e77132fddae54c2e538391a",
+      "transformations": []
+    },
+    {
+      "source": "presentation/invoice-ui-v1/release-sha256.txt",
+      "path": "presentation/invoice-ui-v1/release-sha256.txt",
+      "source_sha256": "7ac1f3277f7fde48d7380f8897a5348ae09af4275dca9dce9c16d7400a200d18",
+      "staged_sha256": "7ac1f3277f7fde48d7380f8897a5348ae09af4275dca9dce9c16d7400a200d18",
+      "transformations": []
+    },
+    {
+      "source": "evaluation/heldout-v1/run.py",
+      "path": "evaluation/heldout-v1/run.py",
+      "source_sha256": "09644c83bdf4ee82a62ae0ad43f85f545646c6bbad109982d354ee9368b55a56",
+      "staged_sha256": "09644c83bdf4ee82a62ae0ad43f85f545646c6bbad109982d354ee9368b55a56",
+      "transformations": []
+    },
+    {
+      "source": "evaluation/heldout-v1/README.md",
+      "source_sha256": "558a42e90122a375c212321763befaad8412d5be2efbd666bc64e009ff0449ea",
+      "excluded": true,
+      "reason_categories": [
+        "personal_path",
+        "personal_identifier"
+      ]
+    },
+    {
+      "source": "evaluation/heldout-v1/freeze.json",
+      "path": "evaluation/heldout-v1/freeze.json",
+      "source_sha256": "bab7e44a442c1c408cff7d98f5bb62929be0e277efafe03f8de9e1505575ac98",
+      "staged_sha256": "bab7e44a442c1c408cff7d98f5bb62929be0e277efafe03f8de9e1505575ac98",
+      "transformations": []
+    },
+    {
+      "source": "evaluation/heldout-v1/tests/test_wrapper.py",
+      "path": "evaluation/heldout-v1/tests/test_wrapper.py",
+      "source_sha256": "47213b9393f6caab4c3da9420924762a9f1e1b139b59b3c0632e2a6d2bc419b2",
+      "staged_sha256": "47213b9393f6caab4c3da9420924762a9f1e1b139b59b3c0632e2a6d2bc419b2",
+      "transformations": []
+    },
+    {
+      "source": "evaluation/heldout-v1/tests/test_contracts.py",
+      "path": "evaluation/heldout-v1/tests/test_contracts.py",
+      "source_sha256": "dd90e19c9ff9885aa325cccbf2ba6345a8df46bcbcf61a88d0e6f0b8ea3368f3",
+      "staged_sha256": "dd90e19c9ff9885aa325cccbf2ba6345a8df46bcbcf61a88d0e6f0b8ea3368f3",
+      "transformations": []
+    },
+    {
+      "source": ".hermes/freezes/invoice-v2.json",
+      "path": ".hermes/freezes/invoice-v2.json",
+      "source_sha256": "e2d675b5e39306935c0e9f1a51946d947ce1f2c563dbeaaf4ed553693276a0b5",
+      "staged_sha256": "e2d675b5e39306935c0e9f1a51946d947ce1f2c563dbeaaf4ed553693276a0b5",
+      "transformations": []
+    }
+  ]
+}

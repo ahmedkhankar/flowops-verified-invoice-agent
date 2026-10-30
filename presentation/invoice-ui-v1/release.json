@@ -1,0 +1,61 @@
+{
+  "presentation_version": "invoice-ui-v1",
+  "recorded_utc": "2026-10-30T09:17:45.813745+00:00",
+  "scope": "Separate presentation layer; no native engine/prompt/case/evaluator changes",
+  "engine_freeze": ".hermes/freezes/invoice-v2.json",
+  "engine_freeze_sha256": "e2d675b5e39306935c0e9f1a51946d947ce1f2c563dbeaaf4ed553693276a0b5",
+  "protected_files_unchanged": 117,
+  "tests": {
+    "presentation_offline": {
+      "passed": 22,
+      "seconds": 2.59
+    },
+    "unchanged_native_regression": {
+      "passed": 126,
+      "seconds": 1.32
+    },
+    "mock_provider_tests_are_not_model_performance": true
+  },
+  "browser_checks": [
+    "Replay source labels",
+    "Stage-only proposal with unchanged persisted total",
+    "Recorded evaluation tab",
+    "No browser-render exceptions"
+  ],
+  "live_validation": {
+    "browser_attempt": "Outcome not retained; documented separately, not counted as success",
+    "controller": "Real local Qwen3:4b-instruct, five captured calls, verified closure",
+    "controller_seconds": 6.296834000037052,
+    "new_benchmark": false,
+    "source": "validation/live-controller-smoke.json",
+    "actions": [
+      "inspect",
+      "stage_invoice_fix",
+      "deploy",
+      "verify",
+      "close"
+    ]
+  },
+  "recorded_evaluation": {
+    "source": "runs/invoice-v2-exam-ollama-20261030T080451Z",
+    "correct_outcomes": "10/12",
+    "unnecessary_approval_requests": 2,
+    "unchanged": true
+  },
+  "files": {
+    "app.py": "360fcda8090fe3d4c3893f2f785574835d075fdd8718c3a342ed613b00a697ae",
+    "ui_core.py": "966dcb20d2bef41e2e6f92a558cd00d7a6331379b74271aae61b3fabf261c13a",
+    "tests/test_presentation.py": "3dec9b2170fe7852cb1c7f326f7295f4a4e7262ee4d9c84a5fc7457f74393adc",
+    ".streamlit/config.toml": "2cb5a2d1cb2fa5d1d6ac5c80ce902a6f424d14f63e9604348bfa7d86c18bc314",
+    "README.md": "2230171a4f5bfa9fdc046198f3149b971fb6f1c711f461c6b84eea1b695a662a",
+    "protected-files.json": "9bfd7f28afc73f128bd22563eb6125791701ffcfae8417f64b1f21466c3ca761",
+    "validation/browser-live-attempt.json": "ae0c8efcbdd4eb512c84ccc0a97396b96cbb22557bb97ffdd1aec2f023813372",
+    "validation/live-controller-smoke.json": "a96397bb18bfe422779cea79d741069d957759f885ec1114980c00be66957b25"
+  },
+  "launch_url": "http://127.0.0.1:8502",
+  "limitations": [
+    "Live sessions are in memory; export before closing or resetting",
+    "Local-only simulation, no production auth or real POS",
+    "Replay is not new inference; historical score never incorporates interactive outcomes"
+  ]
+}
