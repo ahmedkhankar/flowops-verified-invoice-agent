@@ -1,38 +1,44 @@
-# FlowOps — Native Invoice v2
+# FlowOps — Autonomous Merchant Invoice Operations
 
-**Local-only sanitized repository staging. Nothing has been published, initialized as Git, or committed. External publication requires owner approval.**
+FlowOps is an AI-agent prototype I built to investigate merchant invoice discrepancies, execute authorized corrections and verify the persisted result before closing a case. It runs on **synthetic data**, with no connection to real POS, payment or merchant systems.
 
-A simulated merchant-operations workflow: a planner selects permitted actions; trusted tools propose and deploy corrections; a separate Decimal verifier checks persisted invoice values before closure. No real POS or payment access.
+## How it works
 
-## Selected held-out evidence
+1. **Inspect:** Read invoice line prices, quantities, VAT, stored totals and lock status.
+2. **Decide:** A locally served Qwen3 4B planner selects from registered actions. It does not decide its own permissions.
+3. **Execute:** Trusted Python tools calculate exact corrections, stage proposed changes and enforce authorization and invoice locks at deployment.
+4. **Verify:** A separate Decimal-based verifier checks persisted invoice state before closure. Unsupported or locked cases escalate instead of silently changing data.
 
-Open [the self-contained held-out viewer](evidence/heldout-replay.html) in a browser. It displays only h_001 repair, h_013 locked escalation and h_019 unnecessary-approval failure. It never calls a model or executes tools. Its saved values, rationales, expected outcomes and source hashes are a selected disclosure, not full private raw traces. See [publication scope](docs/RELEASE_SCOPE.md).
+The application uses **Python, Ollama, Qwen3 (`qwen3:4b-instruct`) and Streamlit**. The model configuration for the reported live evaluation was temperature 0, thinking disabled and rules fallback off.
 
-## Start here
+## Recorded demonstrations
 
-- [Setup and commands](docs/SETUP.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Security and privacy](docs/SECURITY.md)
-- [Evaluation and evidence boundaries](docs/EVALUATION.md)
-- [Staging verification](docs/VERIFICATION.md)
+- **[Held-out case viewer](evidence/heldout-replay.html):** A self-contained HTML file showing three selected recorded Qwen executions: `h_001` (verified repair), `h_013` (locked escalation), and `h_019` (unnecessary human-approval request). Download the HTML file and open it locally to use its interactive replay; GitHub's normal file view shows the source.
+- **[Saved diagnostic viewer](public-demo/app.py):** A read-only Streamlit interface for three *known diagnostic* examples. It does not invoke the model or execute business tools. See [setup instructions](docs/SETUP.md).
 
-The native source is under `versions/invoice-v2/`. A safe saved diagnostic replay is `public-demo/app.py`: it reads a deliberately reduced derivative of three protected synthetic diagnostic records, never constructs a planner and never executes tools. Original presentation source remains at `presentation/invoice-ui-v1/` for reference, but its full private/historical integrity dependencies are absent. **Use the public-demo entry point, not that original presentation app.**
+These views replay recorded evidence; they are **not fresh model inference**. The original application source lives under [`versions/invoice-v2/`](versions/invoice-v2/). Reference UI source is also retained under `presentation/invoice-ui-v1/`, but it requires omitted historical dependencies and is not the portable demo entry point.
 
-## Reported results — preserve the denominators
+## Evaluation
 
-| Evaluation | Correct outcomes | Repair | Locked model escalation | Unchanged closure |
-|---|---:|---:|---:|---:|
-| Supplier-attested post-freeze held-out, single run | **16/20** | 12/12 | 4/4 | **0/4** |
-| Separate known diagnostic set | **10/12** | Not combined with held-out | Not combined | Not combined |
+| Evaluation | Correct outcomes | Breakdown |
+| --- | ---: | --- |
+| Post-freeze synthetic held-out set, first recorded run | **16/20 (80%)** | 12/12 invoice repairs; 4/4 locked escalations; 0/4 already-correct closures |
+| Separate, previously known diagnostic set | **10/12** | Diagnostic only; not combined with held-out results |
+| Rules baseline on that known diagnostic set | **12/12** | Non-AI baseline; not directly comparable with the held-out result |
 
-Held-out run: **77 model calls; 0 tool failures; 1 rejected tool action; 0 invalid closures; 0 runtime stops; 4 unnecessary human-approval requests.** These four reviews are failures of autonomous unchanged closure, not successful resolutions. Requested model: `qwen3:4b-instruct`, temperature 0, thinking disabled, rules fallback off. Provider-reported model identity is not independent execution attestation.
+The 20-case run recorded **77 model calls**, **0 tool failures**, **1 rejected tool action**, **0 invalid closures**, and **4 unnecessary human-approval requests**. All four already-correct invoice cases failed autonomous unchanged closure. A successful escalation is not a completed repair.
 
-The held-out cases were authored after freeze by a **separate ChatGPT conversation whose author was aware of prior weaknesses**. Independence is supplier-attested, not externally certified. One synthetic run is not certification, general accuracy, measured productivity savings, production readiness, or evidence that the model outperforms rules. The known diagnostic set remains diagnostic, not unseen.
+The held-out cases were written after the implementation freeze in a separate ChatGPT conversation; their author was aware of earlier weaknesses. This was not independently blinded or externally certified testing. The repository includes three selected records, **not** the full 20-case traces or a self-contained reproduction of the aggregate score. Results on synthetic cases do not establish production readiness, general reliability or measured business savings.
 
-These aggregate results were supplied for the release; staging did not rerun inference or independently recompute held-out outcomes from private evidence. Full private held-out inputs, grading fixtures, raw model requests/responses and complete traces remain excluded. The added HTML discloses only selected display records, including their expected-outcome labels. Those three examples do not independently substantiate the complete 20-case aggregate. The Streamlit public-demo viewer still shows only known diagnostic examples.
+## Documentation
 
-## Integrity is scoped honestly
+- [Setup and reproducible public checks](docs/SETUP.md)
+- [System architecture](docs/ARCHITECTURE.md)
+- [Security and privacy boundaries](docs/SECURITY.md)
+- [Evaluation methodology and limitations](docs/EVALUATION.md)
+- [Validation evidence](docs/VERIFICATION.md)
+- [Repository scope and provenance](docs/RELEASE_SCOPE.md)
 
-`SOURCE_ALLOWLIST.json` records explicit source files, source/staged SHA-256 and documented sanitization or exclusions. `PUBLICATION_MANIFEST.json` inventories this final candidate. `provenance/BASELINE_STAGING_SHA256.json` is the unchanged prior 56-file snapshot, not a checksum manifest for this amended tree. Neither is a replacement for the original freeze. Historical integrity manifests and wrapper source are retained as reference, not rewritten to make missing private evidence appear verified. Full original wrapper/native diagnostic verification **will not work in this reduced tree**; see the evaluation document.
+**Testing:** 75 self-contained public-export tests passed in the recorded validation. A separate historical native suite reported 126 passes, but that complete suite cannot be reproduced from this deliberately reduced repository. See the testing documentation for the exact exclusions.
 
-No license has been invented. Owner must review licensing, third-party rights, and all external contents before publication.
+**License:** No open-source license is currently provided. Model weights and private evaluation fixtures are not included.

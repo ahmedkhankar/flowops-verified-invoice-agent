@@ -1,6 +1,6 @@
 # Evaluation and evidence boundaries
 
-See the top-level README for the supplied held-out 16/20, subgroup denominators, four unnecessary approvals and 77-call counters. The known diagnostic 10/12 is separate. No new inference was authorized or performed while staging; software/UI checks are not new model-performance evidence. A separate ChatGPT author knew earlier weaknesses; post-freeze authorship and non-exposure are supplier attestations, not independent certification.
+See the top-level README for the supplied held-out 16/20, subgroup denominators, four unnecessary approvals and 77-call counters. The known diagnostic 10/12 is separate. The export-validation process did not rerun inference; software/UI checks are not additional model-performance evidence. A separate ChatGPT author knew earlier weaknesses; post-freeze authorship and non-exposure are supplier attestations, not independent certification.
 
 ## Preserved manifests are not public verification receipts
 
@@ -18,8 +18,8 @@ See the top-level README for the supplied held-out 16/20, subgroup denominators,
 
 The functional offline CLI runs the included synthetic demo cases. Fresh synthetic native smoke checks cover repair, lock escalation without mutation, and unchanged closure. The public saved UI replays only three redacted known diagnostic examples and preserves a failure. It does not re-run the planner, reproduce held-out inference, or prove held-out aggregates.
 
-Three original test modules require excluded external/historical fixtures; do not run unqualified recursive pytest over versions/presentation/wrapper in one process. Separate same-named engine imports by fresh processes. Future benchmark work would need explicit approval, a new clearly scoped release/protocol, supplied private prerequisites and truthful provenance; preparation here grants none of those permissions.
+Three original test modules require excluded external/historical fixtures; do not run unqualified recursive pytest over versions/presentation/wrapper in one process. Separate same-named engine imports by fresh processes. Further benchmarks require a new clearly scoped evaluation protocol, the necessary private prerequisites where relevant, and transparent provenance.
 
 ## Approved selected held-out display
 
-`evidence/heldout-replay.html` is a separately approved local publication candidate containing three selected saved examples, their values, actions, rationales, expected-outcome labels and source hashes. It is not the full private exam, raw model transport or complete traces. The three examples do not independently prove the 20-case aggregate. This HTML is read-only with embedded records and no network requests. External publication still requires explicit owner authorisation.
+`evidence/heldout-replay.html` is a read-only repository artifact containing three selected saved examples, their values, actions, rationales, expected-outcome labels and source hashes. It is not the full private exam, raw model transport or complete traces. The three examples do not independently prove the 20-case aggregate. This HTML is read-only with embedded records and no network requests. The included HTML is deliberately limited to the three selected records.

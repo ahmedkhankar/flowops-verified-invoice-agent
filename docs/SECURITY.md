@@ -1,19 +1,27 @@
-# Security, privacy and publication boundary
+# Security and Privacy
 
-This is a local-only staging artifact, not an approved public repository. No Git initialization, commit, publish, network installation, inference or private case reading is part of preparation.
+FlowOps is a **local research prototype** for simulated merchant invoice operations. It does not connect to real payment providers, POS systems, merchant accounts, or live customer data. This document describes the controls implemented and their limitations; it is **not a production security certification**.
 
-## Application boundary
+## Operational safeguards
 
-The model chooses registered actions, not actor identity, authorization, arbitrary code or approval. Runtime-issued single-use capabilities bind mutations to an authorized turn. Independent verification and human approval are separate gates. Merchant locks are authoritative at deployment and cannot be overridden by approval. This in-process Python boundary does not defend against an adversary controlling the Python process. Simulation is not a real payment integration or production security assessment.
+- The Qwen planner can select registered operations but cannot grant itself authorization, choose arbitrary code or override merchant invoice locks.
+- Trusted Python code validates requested actions. Runtime-issued, single-use capabilities bind permitted mutations to an authorized action.
+- Proposed invoice corrections are staged before deployment; deployment rechecks permissions and locks before changing persisted values.
+- A separate Decimal-based verifier inspects persisted invoice state before successful closure. Unsupported changes result in review or escalation rather than fabricated success.
+- Read-only saved-replay demonstrations never invoke Qwen or dispatch business operations.
 
-## Explicit exclusions
+## Privacy and included data
 
-No raw held-out inputs/cases/labels/traces, request or response envelopes, credentials, environment files, virtualenv, arbitrary personal paths, whole agent-state directory, external exam kit, historical raw runs, PDFs or slide decks. Only one explicitly inspected nonsecret native freeze manifest is retained under `.hermes/freezes/`; it is reference metadata, not a wholesale agent-state export.
+The repository contains synthetic invoice examples, a reduced diagnostic replay and a selected read-only held-out HTML viewer. The held-out viewer intentionally exposes three examples (`h_001`, `h_013`, `h_019`), including invoice values, action sequences, model rationales, outcomes and source hashes. These are recorded evaluation disclosures, not real customer transactions.
 
-Three known synthetic diagnostic files were inspected and checked against their original protected hashes. Only selected state/action/tool/check fields were extracted to `public-demo/diagnostic-replay.json`. Raw provider envelopes, prompts, audit reports, labels/oracles and full observations were excluded. Source hashes identify provenance without bundling original raw artifacts.
+Private full model traces, raw held-out grading fixtures, complete request/response envelopes, credentials, `.env` files, local virtual environments, presentation slides and demo videos are not part of this package. Some historical integrity metadata and sanitized test logs remain to document provenance and validation boundaries. See [repository scope](RELEASE_SCOPE.md) and [evaluation limitations](EVALUATION.md).
 
-The staged source first-name references were replaced with `the project owner` in two explicitly logged derivatives; source files were not edited. Original UI/wrapper READMEs containing personal paths were excluded and replaced by these public instructions.
+A static scan found no obvious real credentials or personal contact details in the packaged files. Static inspection cannot guarantee the absence of every disclosure. A reserved `.test` example in a security regression test is synthetic, not a live credential.
 
-The retained initial failure log replaces local temporary-directory usernames with `local-user`. A reserved `.test` credential-in-URL fixture is deliberately retained unchanged as an adversarial regression test; it is synthetic, not a real account or email. Reserved example/test email domains are excluded from the email-finding category.
+## Threat-model limitations
 
-The local scan reports categories/counts and file paths only, never matching secret values. It checks personal paths/identifiers, common token/key forms, private-key headers, and high-risk credential assignments. This is a heuristic scan, not a guarantee; owner review remains necessary before any external publication. No license/ownership clearance is implied.
+The authorization boundary operates **inside a Python process**; it does not protect against an attacker who controls that process or the host machine. The application has not been assessed for real payments, multi-tenant authorization, production deployment or adversarial network environments. Testing and results apply to the described synthetic setting only.
+
+## Access and licensing
+
+Access to the repository is governed by GitHub permissions. No open-source license has been added; repository access does not itself grant a general right to redistribute the code.

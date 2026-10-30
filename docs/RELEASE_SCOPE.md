@@ -1,25 +1,30 @@
-# Final public-candidate scope
+# Repository Scope and Provenance
 
-Local preparation only. No repository has been initialised, committed, created remotely or published.
+This repository contains a reduced, reviewable FlowOps software export, not the complete private development workspace. Its recorded demonstrations and validation materials are included for transparency; they should not be mistaken for fresh inference or unrestricted access to historical evidence.
 
 ## Included
-- Existing reviewed application/core, original tests, requirements, technical documentation and known diagnostic derivative.
-- `evidence/heldout-replay.html`: only selected h_001, h_013 and h_019 display records; amounts, state transitions, proposals, outcomes, model rationales, expected-outcome labels and source hashes are visible. Saved execution only; no new inference or dispatch.
-- New publication inventory, security review and SHA-256 manifest.
 
-## Excluded
-All HUMAIN presentation PDFs, editable slides, notes, slide images/build assets and demo video. Also credentials, environments, private full model requests/responses/traces, private grading fixtures and unrelated personal/reference material. The `presentation/invoice-ui-v1` directory contains application UI reference source, not submission slides. The portable public viewer is `public-demo/app.py`; that original reference UI cannot start with omitted integrity dependencies.
+- Native invoice engine, registered tool operations, verifier, source documentation and original test sources.
+- `public-demo/app.py` with a reduced **known-diagnostic** saved replay.
+- `evidence/heldout-replay.html` with selected recorded held-out cases `h_001`, `h_013` and `h_019`, including state transitions, rationales and result labels.
+- Validation logs, source-provenance references, integrity records and the manifest for this repository's file contents.
 
-## Evidence and tests
-75 self-contained public tests passed in the verified baseline; 126 is a historical full native-suite pass, not reproducible as a whole from this export. Three unchanged fixture-dependent modules are excluded from the clean subset. Original failure logs remain. The HTML is three examples, not independent proof of the 16/20 aggregate. Supplier knew prior weaknesses; single-run, supplier-attested post-freeze testing is not blind independent certification. The separate diagnostic remains 10/12; rules achieved 12/12 on that known diagnostic. No new inference or evaluation was run.
+## Not included
 
-## Integrity and provenance
-`PUBLICATION_MANIFEST.json` inventories this complete candidate, excluding itself. `provenance/BASELINE_STAGING_SHA256.json` preserves the previous snapshot only: its original paths/hashes do not describe this amended tree. `SOURCE_ALLOWLIST.json` and the native/wrapper/UI freezes remain unchanged historical references, not regenerated public-copy guarantees. Original engine/tests, included diagnostic data and approved HTML bytes match their source versions.
+The full held-out dataset, private raw request/response traces, private grading fixtures, historical raw runs, real credentials, local virtual environments, personal workspace files, HUMAIN presentation slides and generated videos are not distributed in this repository.
 
-The only baseline document edits are README.md, docs/EVALUATION.md and docs/VERIFICATION.md. The baseline staging inventory is relocated, not rewritten. New technical documents do not contain portal answers, presentation notes or video assets.
+The directory `presentation/invoice-ui-v1/` contains **application UI reference code**, not the HUMAIN slide presentation. It relies on historical dependencies omitted from this export. Use `public-demo/app.py` for the portable saved diagnostic interface.
+
+## Reproducibility and evidence
+
+The public test subset recorded **75 passes**. The historical native-suite **126 passes** are a separate result and cannot be completely rerun from this export because three fixture-dependent test modules require excluded evidence. See [setup](SETUP.md), [verification](VERIFICATION.md) and [evaluation](EVALUATION.md).
+
+The reported post-freeze held-out result is **16/20**, from one synthetic run whose case author knew earlier weaknesses. The separate known diagnostic scored **10/12** for Qwen and **12/12** for the non-AI rules baseline. The three held-out records included here do not independently establish the complete 20-case aggregate.
+
+`PUBLICATION_MANIFEST.json` inventories the files in this repository, excluding the manifest itself. `SOURCE_ALLOWLIST.json` records source provenance and selected sanitized derivatives. `provenance/BASELINE_STAGING_SHA256.json` describes an earlier 56-file export, **not** the current repository. Preserved historical freeze/integrity references may mention external files omitted from the export; they are not proof that those private files are present or verifiable here.
+
+The application, tests and selected recorded evidence are unchanged by this documentation update. No model evaluations were rerun.
 
 ## Licensing
-No licence has been added. MIT is a recommendation only, pending owner approval of rights and terms. No model weights are included or relicensed.
 
-## Reproduce
-Use docs/SETUP.md for the portable diagnostic Streamlit viewer, deterministic CLI and 75-test subset. Open evidence/heldout-replay.html directly for selected held-out saved execution; it requires no server or model runtime. Do not run exposed evaluations again to claim unseen performance.
+No open-source license is currently provided. No third-party model weights are included or relicensed.
