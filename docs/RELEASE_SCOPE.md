@@ -23,7 +23,13 @@ The reported post-freeze held-out result is **16/20**, from one synthetic run wh
 
 `PUBLICATION_MANIFEST.json` inventories the files in this repository, excluding the manifest itself. `SOURCE_ALLOWLIST.json` records source provenance and selected sanitized derivatives. `provenance/BASELINE_STAGING_SHA256.json` describes an earlier 56-file export, **not** the current repository. Preserved historical freeze/integrity references may mention external files omitted from the export; they are not proof that those private files are present or verifiable here.
 
-The application, tests and selected recorded evidence are unchanged by this documentation update. No model evaluations were rerun.
+The original native application, its tests and selected recorded evaluation evidence remain unchanged. The merchant-facing UI is a separate addition, not a revised frozen engine.
+
+## Merchant UI integration
+
+`merchant-ui/` adds a thin native-session adapter, Streamlit product interface, new builder-authored demo scenarios, UI-specific tests and documentation. `.streamlit/config.toml` provides the local product theme. The original engine, verifier, evaluation scripts/cases, selected recordings and historical freeze manifests are pinned without alteration in `merchant-ui/FROZEN_SOURCE_SHA256.json`.
+
+UI software checks and minimal new Qwen smoke attempts are separately reported in `merchant-ui/VALIDATION.md`. They do not replace or pool with historical model results. The UI sends complaint context in the operational objective, never expected grading outcomes. Full new smoke records and screenshots are retained locally outside this repository; only a concise non-personal validation summary is included. No slides, video, synthetic voice or new private historical traces are added.
 
 ## Licensing
 

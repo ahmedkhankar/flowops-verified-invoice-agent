@@ -49,6 +49,18 @@ Optional read-only Streamlit diagnostic viewer:
 
 Open `http://127.0.0.1:8513`. It intentionally displays a reduced replay and **does not** call the model or change business data.
 
+## D. Operate the merchant-facing ticket workflow
+
+After the dependency setup above, from the repository root:
+
+```sh
+.venv/bin/python -B -m streamlit run merchant-ui/app.py --server.address 127.0.0.1 --server.port 8503 --browser.gatherUsageStats false
+```
+
+Open **http://127.0.0.1:8503**. Create a synthetic ticket, read the invoice preview and enter complaint context. Choose LIVE MODEL for real local Qwen through Ollama, explicitly enable execution, then use Step Through or Run Agent. Creating a ticket alone does not call Qwen. A separately selected RULES BASELINE ticket can demonstrate deterministic software behavior offline, but is not AI evidence.
+
+Use Invoice before / after for persisted changes, Resolution & audit for genuine outcome/checks, and Evaluation evidence for the unchanged selected saved executions. No model calls occur in replay. An unavailable model yields an honest incomplete attempt, never a silent fallback. See [Merchant UI guide](merchant-ui/README.md) for exact complaint semantics, local runtime prerequisites, privacy, session lifetime and [new UI test/smoke results](merchant-ui/VALIDATION.md). This path is new operational testing, not reproduction or improvement of the frozen 16/20 result.
+
 ## Reported performance and provenance
 
 | Evaluation | Correct outcomes | Details |

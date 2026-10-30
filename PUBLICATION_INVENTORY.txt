@@ -1,5 +1,6 @@
 .gitignore
 .hermes/freezes/invoice-v2.json
+.streamlit/config.toml
 JUDGES_START_HERE.md
 PUBLICATION_INVENTORY.txt
 PUBLICATION_MANIFEST.json
@@ -17,6 +18,15 @@ evaluation/heldout-v1/run.py
 evaluation/heldout-v1/tests/test_contracts.py
 evaluation/heldout-v1/tests/test_wrapper.py
 evidence/heldout-replay.html
+merchant-ui/FROZEN_SOURCE_SHA256.json
+merchant-ui/README.md
+merchant-ui/VALIDATION.md
+merchant-ui/app.py
+merchant-ui/scenarios.json
+merchant-ui/service.py
+merchant-ui/tests/test_app.py
+merchant-ui/tests/test_routing.py
+merchant-ui/tests/test_service.py
 presentation/invoice-ui-v1/app.py
 presentation/invoice-ui-v1/protected-files.json
 presentation/invoice-ui-v1/release-sha256.txt

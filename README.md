@@ -4,6 +4,24 @@
 
 FlowOps is an AI-agent prototype I built to investigate merchant invoice discrepancies, execute authorized corrections and verify the persisted result before closing a case. It runs on **synthetic data**, with no connection to real POS, payment or merchant systems.
 
+## Start the merchant-facing application
+
+The new [Merchant Operations UI](merchant-ui/README.md) lets an operator raise a synthetic billing complaint and watch the **existing agent** investigate it. It separates ticket intake, actual local execution, before/after invoices and recorded evaluation evidence.
+
+From the repository root, after installing the existing requirements:
+
+```sh
+.venv/bin/python -B -m streamlit run merchant-ui/app.py --server.address 127.0.0.1 --server.port 8503 --browser.gatherUsageStats false
+```
+
+Open **http://127.0.0.1:8503**, select **Create New Ticket**, choose a synthetic scenario and submit a complaint. A real native session is created; nothing calls the model until you enable **LIVE MODEL** and press **Step Through** or **Run Agent**. Local Ollama must serve the configured model, default `qwen3:4b-instruct`; no API key is needed. Temperature is 0, thinking is disabled and rules fallback is OFF. An explicitly chosen **RULES BASELINE** ticket is non-AI, never an automatic recovery mode.
+
+The complaint is appended to the agent's objective as untrusted context, not treated as a general-purpose triage system or a permission grant. The numeric invoice and business restrictions remain authoritative. Trusted tools stage/deploy permitted changes; the independent verifier checks the actual saved invoice. A locked escalation, unnecessary approval or incomplete attempt is not labelled a repair.
+
+**Evaluation evidence** is a separate **SAVED REPLAY** section. Creating tickets or viewing recordings does not change historical scores. The new UI/scenarios and smoke tests are separate from the frozen 20-case evaluation. All data, permissions and operations remain simulated; there is no actual POS/payment integration, production-authentication service or measured merchant savings. Tickets last only for the current local browser session; export the synthetic audit before leaving.
+
+See [UI setup, supported inputs, safety boundaries and tests](merchant-ui/README.md) and [UI validation evidence](merchant-ui/VALIDATION.md). GitHub hosts this source, not a deployed public application.
+
 ## How it works
 
 1. **Inspect:** Read invoice line prices, quantities, VAT, stored totals and lock status.
