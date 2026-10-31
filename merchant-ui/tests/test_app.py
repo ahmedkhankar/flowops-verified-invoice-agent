@@ -1,5 +1,7 @@
 """Widget journeys: explicit rules or mocked Qwen, never unmocked inference."""
 from pathlib import Path
+import io
+import json
 import sys
 import pytest
 from streamlit.testing.v1 import AppTest
@@ -84,6 +86,17 @@ def test_form_requires_synthetic_confirmation():
     assert a.error and not a.session_state['tickets']
 
 
+def test_complaint_question_keeps_operator_selected_routes():
+    a=app()
+    a.sidebar.radio[0].set_value('Create ticket').run()
+    question=next(s for s in a.selectbox if s.label=='What is your complaint about?')
+    assert question.options==list(service.ISSUE_ROUTES)
+    captions='\n'.join(c.value for c in a.caption)
+    assert 'Describe the issue and submit the invoice for investigation.' in captions
+    assert 'Structured routing, not AI intent classification' not in captions
+    assert not a.session_state['tickets']
+
+
 def test_rules_full_journey_comparison_and_audit():
     a=app(); ticket=create(a)
     assert ticket.status=='New' and ticket.mode=='RULES BASELINE'
@@ -91,6 +104,9 @@ def test_rules_full_journey_comparison_and_audit():
     button(a,'Step Through').click().run()
     assert not a.exception
     assert ticket.session.staged_patch and ticket.initial==ticket.session.bill.snapshot()
+    timeline='\n'.join(m.value for m in a.markdown if 'class="timeline"' in m.value)
+    assert 'Action selected by rules' in timeline and 'Action selected by AI' not in timeline
+    assert 'Executed by trusted tools' in timeline and 'Verification result' in timeline
     button(a,'Run Agent').click().run()
     assert not a.exception and ticket.status=='Resolved'
     assert any(e['changed'] for e in ticket.events)
@@ -124,6 +140,53 @@ def test_live_enable_and_failed_model_are_honest():
     assert ticket.events[-1]['action'] is None
     assert ticket.events[-1]['changed'] is False
     assert button(a,'Run Agent').disabled
+    timeline='\n'.join(m.value for m in a.markdown if 'class="timeline"' in m.value)
+    assert 'No action was selected' in timeline and 'Tool execution result' in timeline
+    assert 'Executed by trusted tools' not in timeline
+
+
+@pytest.mark.parametrize('scenario,action,accepted', [
+    ('repair','inspect',True),
+    ('repair','stage_invoice_fix',True),
+    ('locked','deploy',False),
+])
+def test_live_timeline_separates_selection_execution_and_checks(scenario, action, accepted, monkeypatch):
+    calls=[]
+    def transport(req, *, timeout):
+        if isinstance(req,str):
+            return io.BytesIO(json.dumps({'models':[]}).encode())
+        calls.append(json.loads(req.data))
+        return io.BytesIO(json.dumps({
+            'model':service.DEFAULT_MODEL,
+            'message':{'content':json.dumps({'action':action,'reason':'Offline provider fixture'})},
+        }).encode())
+    monkeypatch.setattr(service.request,'urlopen',transport)
+    a=app(); ticket=create(a,scenario,mode='LIVE MODEL')
+    assert any(t.value=='Qwen3 4B selects the next action' for t in a.subheader)
+    assert not calls and not ticket.events
+    checkbox(a,'Enable real local Qwen execution for this ticket').check().run()
+    button(a,'Step Through').click().run()
+    assert not a.exception and len(calls)==len(ticket.events)==1
+    event=ticket.events[0]
+    assert event['action']==action and event['accepted'] is accepted
+    timeline='\n'.join(m.value for m in a.markdown if 'class="timeline"' in m.value)
+    assert 'Action selected by AI' in timeline and 'Offline provider fixture' in timeline
+    assert event['message'] in timeline
+    assert ('Executed by trusted tools' in timeline) is accepted
+    assert ('Tool execution result' in timeline) == (not accepted)
+    assert 'Verification result:</b> '+('PASS' if event['verification']['passed'] else 'FAIL') in timeline
+    assert any(m.label=='Verification result' for m in a.metric)
+    assert any('Complaint category you selected: Invoice discrepancy' in c.value for c in a.caption)
+
+
+def test_custom_model_is_not_labelled_as_qwen():
+    a=app(); ticket=create(a,mode='LIVE MODEL')
+    ticket.model='another-local-model'
+    a.run()
+    assert not a.exception
+    assert any(t.value=='AI selects the next action' for t in a.subheader)
+    assert not any('Qwen3 4B selects' in t.value for t in a.subheader)
+    assert 'Selected model: another-local-model' in [t.value for t in a.get('text')]
 
 
 def test_saved_evidence_does_not_create_or_modify_ticket():

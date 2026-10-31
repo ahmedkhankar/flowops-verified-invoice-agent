@@ -106,7 +106,7 @@ def test_audit_observation_and_initial_state_are_detached():
 def test_form_blocks_refund_and_complaint_is_plain_text():
     a=AppTest.from_file(str(UI/'app.py')).run()
     a.sidebar.radio[0].set_value('Create ticket').run()
-    next(s for s in a.selectbox if s.label=='Issue category — selected by the operator').set_value('Refund request')
+    next(s for s in a.selectbox if s.label=='What is your complaint about?').set_value('Refund request')
     next(c for c in a.checkbox if c.label=='This ticket contains synthetic information only.').check()
     next(b for b in a.button if b.label=='Create Ticket').click().run()
     assert not a.exception and not a.session_state['tickets']

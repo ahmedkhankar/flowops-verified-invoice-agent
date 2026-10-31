@@ -40,6 +40,12 @@ except Exception:
     st.stop()
 
 PAGES = ['Overview', 'Create ticket', 'Ticket workspace', 'Evaluation evidence']
+ACTION_NAMES = {
+    'inspect': 'Inspect invoice', 'stage_invoice_fix': 'Prepare invoice correction',
+    'stage_split_fix': 'Prepare payment-split correction', 'deploy': 'Apply correction',
+    'verify': 'Check saved invoice', 'close': 'Close complaint',
+    'escalate': 'Refer for human review', 'request_approval': 'Request human approval',
+}
 
 if 'tickets' not in st.session_state:
     st.session_state.tickets = {}
@@ -62,9 +68,12 @@ def badge(label, warning=False):
 def source_header(ticket):
     badge(ticket.mode, ticket.mode == 'RULES BASELINE')
     if ticket.mode == 'LIVE MODEL':
-        st.caption(f'Real local model calls only when you press Run or Step · {ticket.model} · temperature 0 · thinking off · rules fallback OFF')
+        st.subheader('Qwen3 4B selects the next action' if ticket.model == svc.DEFAULT_MODEL else 'AI selects the next action')
+        if ticket.model != svc.DEFAULT_MODEL:
+            st.text('Selected model: ' + ticket.model)
+        st.caption('When you press Run Agent or Step Through, the AI chooses an action. Trusted tools carry it out when permitted, and software checks the saved invoice.')
     else:
-        st.caption('Deterministic non-AI baseline. Never counted as Qwen execution.')
+        st.caption('Actions selected by predefined rules. This mode does not use AI.')
 
 
 @st.cache_data(ttl=15, show_spinner=False)
@@ -111,14 +120,14 @@ if page == 'Overview':
 
 elif page == 'Create ticket':
     st.title('Create a billing ticket')
-    st.caption('A real native WorkflowSession, built from synthetic data. No model runs until you choose Run Agent or Step Through.')
+    st.caption('Create a ticket using a simulated invoice. The agent starts investigating when you choose Run Agent or Step Through.')
     left, right = st.columns([1.35,1], gap='large')
     with left:
         scenario = st.selectbox('Synthetic invoice scenario', list(svc.SCENARIOS), format_func=lambda k: svc.SCENARIOS[k]['title'])
         data = svc.SCENARIOS[scenario]
         with st.form('ticket_form_'+scenario):
-            issue_category = st.selectbox('Issue category — selected by the operator', list(svc.ISSUE_ROUTES))
-            st.caption('Structured routing, not AI intent classification. Refunds, fraud/disputes and account requests cannot enter invoice repair. Unclear requests need clarification. Complaint text is not automatically classified; select the category accurately.')
+            issue_category = st.selectbox('What is your complaint about?', list(svc.ISSUE_ROUTES))
+            st.caption('Describe the issue and submit the invoice for investigation.')
             merchant = st.selectbox('Synthetic merchant', ['Cedar Table · Synthetic', 'Harbour Kitchen · Synthetic'])
             title = st.text_input('Ticket title', value=data['title'], max_chars=100)
             complaint = st.text_area('Complaint description', value=data['description'], height=115, max_chars=800)
@@ -165,14 +174,14 @@ elif page == 'Ticket workspace':
     st.text(ticket.title)
     st.text(f'{ticket.ticket_id} / {ticket.invoice_id} / {ticket.merchant}')
     source_header(ticket)
-    st.caption('Selected issue category: ' + ticket.issue_category + ' · Structured routing, not AI classification')
+    st.caption('Complaint category you selected: ' + ticket.issue_category)
     st.text(ticket.complaint)
     cols=st.columns(4)
     cols[0].metric('Ticket status', ticket.status)
     cols[1].metric('Saved total', svc.money(session.bill.stored_total_cents)+' SAR')
     cols[2].metric('Calculated invoice total', svc.money(svc.expected_total(session.bill.snapshot()))+' SAR')
-    cols[3].metric('Independent checks', 'PASS' if session.verification.passed else 'FAIL')
-    st.caption(f'{"MERCHANT LOCK ACTIVE" if session.bill.locked else "Unlocked"} · Invoice version {session.bill.version} · {session.step_count}/{svc.MAX_STEPS} selected actions · Calculated total is display-only; the native verifier is authoritative.')
+    cols[3].metric('Verification result', 'PASS' if session.verification.passed else 'FAIL')
+    st.caption(f'{"MERCHANT LOCK ACTIVE" if session.bill.locked else "Unlocked"} · Invoice version {session.bill.version} · {session.step_count}/{svc.MAX_STEPS} selected actions')
     controls, detail = st.columns([1.45,1])
     with controls:
         live_enabled = True
@@ -216,13 +225,17 @@ elif page == 'Ticket workspace':
     tabs=st.tabs(['Investigation timeline','Invoice before / after','Resolution & audit'])
     with tabs[0]:
         if not ticket.events:
-            st.markdown('<div class="card"><h3>Investigation has not started</h3><p class="muted">Choose Step Through to explain one model-selected action, or Run Agent to continue until an outcome, approval, error or the shared action limit.</p></div>', unsafe_allow_html=True)
+            st.markdown('<div class="card"><h3>Investigation has not started</h3><p class="muted">Choose Step Through or Run Agent to see the selected actions, tool results and invoice checks.</p></div>', unsafe_allow_html=True)
         for e in ticket.events:
-            reason=escape(e['reason'] or 'No model action was returned.')
+            selection_label='Action selected by AI' if ticket.mode == 'LIVE MODEL' else 'Action selected by rules'
+            selected_action=ACTION_NAMES.get(e['action'], e['action'] or 'No action was selected')
+            reason=escape(e['reason'] or 'The investigation stopped before an action was selected.')
             change='Saved invoice changed' if e['changed'] else 'No saved invoice change'
             outcome='Accepted' if e['accepted'] else 'Not accepted'
-            st.markdown(f'<div class="timeline"><h4>{e["step"] or "—"} / {escape(e["label"])}</h4><p>{reason}</p><p><b>{outcome}</b> · {change} · {escape(e["ticket_status"])}</p><p>{escape(e["message"])}</p></div>', unsafe_allow_html=True)
-        st.caption('Reasons are model-generated explanations, not authoritative policy. Events reflect real native results; initial checks are not fabricated agent actions.')
+            execution_label='Executed by trusted tools' if e['accepted'] else 'Tool execution result'
+            verification='PASS' if e['verification']['passed'] else 'FAIL'
+            st.markdown(f'<div class="timeline"><h4>{e["step"] or "—"} / {escape(e["label"])}</h4><p><b>{selection_label}:</b> {escape(selected_action)}</p><p>{reason}</p><p><b>{execution_label}:</b> {outcome} · {escape(e["message"])}</p><p><b>Verification result:</b> {verification} · saved invoice checks</p><p>{change} · {escape(e["ticket_status"])}</p></div>', unsafe_allow_html=True)
+        st.caption('The timeline shows recorded actions and tool results. Invoice checks can pass before the agent has finished the complaint.')
     with tabs[1]:
         before,after=st.columns(2)
         for col,name,state in [(before,'Original invoice',ticket.initial),(after,'Current saved invoice',session.bill.snapshot())]:
