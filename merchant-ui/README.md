@@ -24,7 +24,6 @@ The UI uses local `http://127.0.0.1:11434`, temperature 0, `think:false`, and ru
 4. **Invoice before / after:** itemized original and current saved invoice; VAT, difference, split and version; proposed patches remain separate from persisted changes.
 5. **Resolution & audit:** genuine native status, actual step count, checks, human intervention and optional JSON audit. Technical details are collapsed by default.
 6. **Evaluation evidence:** unchanged self-contained selected h_001/h_013/h_019 records, explicitly SAVED REPLAY. No planner is constructed and no actions are dispatched. These are not intake scenarios.
-7. **Demo guide:** a concise 3–4 minute honest walkthrough; do not promise Qwen success before execution.
 
 ## What the complaint actually does
 

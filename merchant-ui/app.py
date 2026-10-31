@@ -39,11 +39,13 @@ except Exception:
     st.error('Protected engine or evidence files differ from this UI release. Execution is blocked. Restore the pinned files before continuing.')
     st.stop()
 
+PAGES = ['Overview', 'Create ticket', 'Ticket workspace', 'Evaluation evidence']
+
 if 'tickets' not in st.session_state:
     st.session_state.tickets = {}
 if '_next_page' in st.session_state:
     st.session_state.page = st.session_state.pop('_next_page')
-if 'page' not in st.session_state:
+if st.session_state.get('page') not in PAGES:
     st.session_state.page = 'Overview'
 
 
@@ -75,7 +77,7 @@ with st.sidebar:
     st.caption('MERCHANT OPERATIONS')
     st.markdown('<span class="pill">SIMULATED ENVIRONMENT</span>', unsafe_allow_html=True)
     st.write('')
-    page = st.radio('Workspace', ['Overview', 'Create ticket', 'Ticket workspace', 'Evaluation evidence', 'Demo guide'], key='page')
+    page = st.radio('Workspace', PAGES, key='page')
     st.divider()
     st.caption('LOCAL SESSION ONLY')
     st.write(f'{len(st.session_state.tickets)} tickets in this browser session')
@@ -87,9 +89,8 @@ st.markdown('<div class="eyebrow">Merchant billing / controlled simulation</div>
 if page == 'Overview':
     st.title('Merchant Operations')
     st.markdown('<div class="hero"><h2>From invoice complaint to a checked outcome.</h2><p>Investigate, resolve and verify merchant invoice issues. The agent chooses the next action; trusted tools enforce the business rules.</p></div>', unsafe_allow_html=True)
-    a, b, c = st.columns([1.1,1,2])
-    a.button('＋ Create New Ticket', type='primary', on_click=go, args=('Create ticket',), use_container_width=True)
-    b.button('Open Demo Guide', on_click=go, args=('Demo guide',), use_container_width=True)
+    actions, _ = st.columns([1.1,3])
+    actions.button('＋ Create New Ticket', type='primary', on_click=go, args=('Create ticket',), use_container_width=True)
     st.write('')
     tickets = st.session_state.tickets
     if not tickets:
@@ -257,26 +258,3 @@ elif page == 'Evaluation evidence':
     st.write('**h_001:** verified repair · **h_013:** locked escalation · **h_019:** unnecessary approval failure')
     st.info('Post-freeze synthetic result: 16/20. Known diagnostic: 10/12. These are separate sets. The case author knew earlier weaknesses; this is not blinded certification or production performance.')
     components.html(svc.heldout_html(), height=980, scrolling=True)
-
-else:
-    st.title('A clear, honest three-minute demo')
-    st.markdown('''### 1. Raise an invoice complaint
-Open **Create ticket**, keep **Invoice total mismatch**, confirm synthetic data and submit. The ticket is a real native session. Its complaint becomes objective context; no model has run yet.
-
-### 2. Watch the agent work
-In **LIVE MODEL**, enable local execution and choose **Step Through**. Explain actual actions as they appear. Staging only prepares a proposal; deployment changes saved state. Continue until the engine closes, requests approval, escalates or fails. Do not promise a successful Qwen outcome in advance.
-
-### 3. Respect the lock
-Create **Locked invoice dispute**. The lock is authoritative. A correct escalation leaves the amount and version unchanged; a blocked write is not a repair. If the model fails, show that honestly.
-
-### 4. Preserve the autonomy gap
-Create **Already-correct invoice review**. A model approval request is not a resolution. Do not add a manual close or replace the planner to manufacture success.
-
-### 5. Separate historical evidence
-Open **Evaluation evidence** for saved h_001, h_013 and h_019. Call them recorded executions. Keep 16/20 held-out separate from 10/12 diagnostic and the 12/12 known-set rules baseline.
-
-**If Ollama is unavailable:** the ticket reports an incomplete attempt without silent rules fallback. A separate **RULES BASELINE** ticket is useful offline, but is not AI evidence.
-
-**What is simulated:** merchant identity, invoices, permissions, approvals and operations. No actual POS connection, payment, customer record or human notification occurs. There are no measured merchant savings or production-reliability claims.
-
-**What to retain:** download the synthetic ticket audit before closing the browser session. Current-session tickets are not a durable shared database.''')
