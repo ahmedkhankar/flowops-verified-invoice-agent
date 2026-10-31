@@ -1,4 +1,4 @@
-# FlowOps — Autonomous Merchant Invoice Operations
+# FlowOps - Autonomous Merchant Invoice Operations
 
 **Judges:** [Quickstart, reproducibility paths and evaluation boundaries](JUDGES_START_HERE.md).
 
